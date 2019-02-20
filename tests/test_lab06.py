@@ -31,26 +31,26 @@ class TestConversion(unittest.TestCase):
 
     @weight(10)
     def test_longestWord2(self):
-        """testing longestWord("input2.txt")"""
+        """Testing longestWord("input2.txt")"""
         assert longestWord("input2.txt") == "responsible"
 
     ####################
 
     @weight(10)
     def test_charactersPerWord1(self):
-        """Testing """
+        """Testing charactersPerWord("input1.txt")"""
         self.assertEqual(charactersPerWord("input1.txt"), pytest.approx(4.278846153846154))
 
     @weight(10)
     def test_charactersPerWord2(self):
-        """charactersPerWord("input2.txt")"""
+        """Testing charactersPerWord("input2.txt")"""
         self.assertEqual(charactersPerWord("input2.txt"), pytest.approx(4.3882352941176475))
 
     ###################
 
     @weight(10)
     def test_rollDice_multiple(self):
-        """Testing rollDIce"""
+        """Testing rollDice"""
         for i in range(100):
             diceResult = rollDice()
             assert diceResult >= 2 and diceResult <= 12
