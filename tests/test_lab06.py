@@ -12,8 +12,6 @@ class TestConversion(unittest.TestCase):
     def setUp(self):
         pass
 
-    self.noOfTimes = 250
-
     @weight(10)
     def test_totalWords1(self):
         """Testing totalWords("input1.txt")"""
@@ -53,7 +51,7 @@ class TestConversion(unittest.TestCase):
     @weight(10)
     def test_rollDice_multiple(self):
         """Testing rollDIce"""
-        for i in range(self.noOfTimes):
+        for i in range(100):
             diceResult = rollDice()
             assert diceResult >= 2 and diceResult <= 12
 
@@ -61,13 +59,13 @@ class TestConversion(unittest.TestCase):
     @weight(10)
     def test_rollDistribution_single(self):
         """Testing the output of rollDistribution"""
-        output = rollDistribution(self.noOfTimes)
+        output = rollDistribution(250)
 
         assert type(output) == list
         assert 13 == len(output)
         assert output[0] == 0
         assert output[1] == 0
-        assert self.noOfTimes == sum(output)
+        assert 250 == sum(output)
 
     #####################
 
@@ -75,13 +73,14 @@ class TestConversion(unittest.TestCase):
     def test_printDistribution_format(self):
         """Testing printDistribution output's first and last lines"""
 
+        noOfTimes = 250
         f = io.StringIO()
         with redirect_stdout(f):
-            printDistribution(rollDistribution(self.noOfTimes))
+            printDistribution(rollDistribution(noOfTimes))
         s = f.getvalue()
         lines = s.strip().split('\n')
         assert lines[0] == "Distribution of dice rolls"
-        assert lines[-1] == str(self.noOfTimes) + " rolls"
+        assert lines[-1] == str(noOfTimes) + " rolls"
         assert lines[-2] == "------------------------------"
         # Making sure only dice values from 2 to 12 is printed
         for i in range(2, 13):
@@ -92,7 +91,7 @@ class TestConversion(unittest.TestCase):
         """Testing printDistribution asterisk output"""
         f = io.StringIO()
         with redirect_stdout(f):
-            printDistribution(rollDistribution(self.noOfTimes))
+            printDistribution(rollDistribution(noOfTimes))
         s = f.getvalue()
         lines = s.strip().split('\n')
         for i in range(2, 13):
@@ -106,13 +105,13 @@ class TestConversion(unittest.TestCase):
         """Testing printDistribution percent output"""
         f = io.StringIO()
         with redirect_stdout(f):
-            printDistribution(rollDistribution(self.noOfTimes))
+            printDistribution(rollDistribution(noOfTimes))
         s = f.getvalue()
         lines = s.strip().split('\n')
         for i in range(2, 13):
             split = lines[i].split(':')[1].strip().split()
             num = int(split[0])
-            assert split[2] == "{0:.1f})%".format(num / self.noOfTimes * 100)
+            assert split[2] == "{0:.1f})%".format(num / noOfTimes * 100)
 
 
 if __name__ == '__main__':
