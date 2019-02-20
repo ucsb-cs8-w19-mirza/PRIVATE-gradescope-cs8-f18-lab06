@@ -113,9 +113,7 @@ class TestConversion(unittest.TestCase):
         for i in range(2, 13):
             split = lines[i].split(':')[1].strip().split()
             num = int(split[0])
-            print(split[2])
-            print("{0:.1f})%".format(num / noOfTimes * 100))
-            assert split[2] == "{0:.1f})%".format(num / noOfTimes * 100)
+            assert split[2] == "{0:.1f}%)".format(num / noOfTimes * 100)
 
 
 if __name__ == '__main__':
