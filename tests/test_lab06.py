@@ -89,6 +89,7 @@ class TestConversion(unittest.TestCase):
     @weight(10)
     def test_printDistribution_asteriskValues(self):
         """Testing printDistribution asterisk output"""
+        noOfTimes = 250
         f = io.StringIO()
         with redirect_stdout(f):
             printDistribution(rollDistribution(noOfTimes))
@@ -103,6 +104,7 @@ class TestConversion(unittest.TestCase):
     @weight(5)
     def test_printDistribution_percentValues(self):
         """Testing printDistribution percent output"""
+        noOfTimes = 250
         f = io.StringIO()
         with redirect_stdout(f):
             printDistribution(rollDistribution(noOfTimes))
